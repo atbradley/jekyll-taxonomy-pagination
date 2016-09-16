@@ -70,8 +70,6 @@ module Jekyll
         @first_page_path = paginate_path(site, 1)
     end
 
-    alias_method :original_to_liquid, :to_liquid
-
     def paginate_path(site, num_page)
         return nil if num_page.nil?
         pag_root = site.config['taxonomy']['paginate_root']
@@ -98,7 +96,7 @@ module Jekyll
     end
 
     def to_liquid
-      liquid = original_to_liquid
+      liquid = super
       liquid['taxon_type'] = @taxon_type
       liquid['taxon'] = @taxon
       liquid['first_page_path'] = @first_page_path
